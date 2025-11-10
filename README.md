@@ -48,6 +48,13 @@ Open the password_manage.html file in your browser.
 •	cd pass-manage
 •	Launch the app by opening password_manage.html in your browser.
 
+📸 Preview
+
+Here’s how VaultGuard looks in action:
+
+![VaultGuard Screenshot 1](image/Screenshot-1.png)
+![VaultGuard Screenshot 2](image/Screenshot-2.png)
+
 🧠 About the Project
 This project was created by Muskan Agarwal to help users like herself store and remember passwords easily without relying on online password managers or cloud servers.
 VaultGuard works completely offline and is perfect for personal use.
