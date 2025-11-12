@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VaultGuard | My Profile</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #8A2BE2; /* Primary color */
+            --glass-bg: rgba(255, 255, 255, 0.623); /* Glass background with transparency */
+            --glass-border: rgba(255, 255, 255, 0.2); /* Glass border */
+        }
+
+        /* Basic styling for the profile page */
+        body {
+            font-family: sans-serif;
+            background: url('image/p3.jpg');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            /* Slight blur on the background image */
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .profile-container {
+            background: var(--glass-bg); /* Use glass background variable */
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: 30px; /* Increased padding */
+            border-radius: 20px; /* Rounded corners */
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            border: 1px solid var(--glass-border);
+            text-align: center;
+            width: 80%; /* Adjust width as needed */
+            max-width: 500px;
+        }
+
+        /* Logo and Heading styles */
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .logo-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-right: 15px; /* Space between logo and text */
+        }
+
+        h1 {
+            color:var(--primary);
+            margin-bottom: 20px;
+            font-size: 2rem; /* Adjusted font size */
+            font-weight: bold;
+        }
+
+        p {
+            color: #202020; /* Darker text color */
+            margin-bottom: 15px; /* More spacing */
+            font-size: 1.1rem;
+        }
+
+        .back-button {
+            display: inline-block;
+            padding: 12px 25px;
+            background-color: var(--primary); /* Use primary color */
+            color: white;
+            text-decoration: none;
+            border-radius: 8px; /* Slightly rounded corners */
+            margin-top: 30px; /* More spacing */
+            transition: background-color 0.2s ease;
+        }
+
+        .back-button:hover {
+            background-color: #7d26bb; /* Darker shade on hover */
+        }
+
+    </style>
+</head>
+<body>
+    <div class="profile-container">
+        <div class="logo-container">
+            <i class="fas fa-shield-alt logo-icon"></i>
+            <h1>VaultGuard</h1>
+        </div>
+        <p><strong>Username:</strong> <span id="profile-username"></span></p>
+        <p><strong>Email:</strong> <span id="profile-email"></span></p>
+         <a href="password_manage.html" class="back-button">Back to Password Manager</a>
+    </div>
+
+    <script>
+        // Retrieve the current user from localStorage
+        const currentUser = localStorage.getItem('currentUser') ? JSON.parse(localStorage.getItem('currentUser')) : null;
+        const usernameSpan = document.getElementById('profile-username');
+        const emailSpan = document.getElementById('profile-email');
+
+        if (currentUser) {
+            usernameSpan.textContent = currentUser.username;
+            emailSpan.textContent = currentUser.email;
+        } else {
+            // Handle the case where there is no user logged in
+            usernameSpan.textContent = "Not logged in";
+            emailSpan.textContent = "Please log in to view profile information.";
+        }
+    </script>
+</body>
+</html>

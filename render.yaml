@@ -1,0 +1,37 @@
+# render.yaml
+version: 1
+
+services:
+  - type: web  # Backend API
+    name: vaultguard-backend
+    env: node
+    buildCommand: npm install
+    startCommand: node backend/server.js  # Adjust the path if needed
+    plan: free
+    envVars: # Environment variables (these would *override* what you set in the dashboard if both are present)
+      - key: PORT
+        value: $PORT # Render automatically provides $PORT
+      - key: DB_HOST
+        value: ${{DATABASE_URL.host}}  # Or you could specify the value
+      - key: DB_PORT
+        value: ${{DATABASE_URL.port}}
+      - key: DB_NAME
+        value: ${{DATABASE_URL.path}}
+      - key: DB_USER
+        value: ${{DATABASE_URL.username}}
+      - key: DB_PASSWORD
+        value: ${{DATABASE_URL.password}}
+      - key: JWT_SECRET
+        value:  your-super-secret-jwt-key  # NEVER hardcode directly - use Render's variables
+      - key: ENCRYPTION_KEY
+        value: your-32-byte-hex-encryption-key  # NEVER hardcode directly
+
+  - type: static-site  # Frontend
+    name: vaultguard-frontend
+    buildCommand: # If no build step then nothing is needed
+    staticPublishPath: frontend/   # Path to your static files (index.html)
+    plan: free
+
+databases:  # If you create database on Render, you can also define it here
+    - name: vaultguard-db
+      type: postgresql
